@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "create",
     description: "creates an embed button given below",

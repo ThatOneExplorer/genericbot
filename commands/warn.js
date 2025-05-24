@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
 const moment = require("moment")
 const {prefix} = require("../config.json")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "warn",
     description: "Warns a given user",

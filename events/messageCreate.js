@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 const Open = require("../models/ModMailSchema");
 const Discord = require('discord.js')
 const prefix = require("../config.json")
-const {ownerID} = require("../config.json")
-const GUILD_ID = "864306095388229632";
+const ownerID = process.env.OWNERID_ID
+const generic_server = process.env.GENERIC_SERVER
 const THREAD_CATEGORY_ID = "864306096624893973";
 module.exports = {
 	name: 'messageCreate',
@@ -12,7 +12,10 @@ module.exports = {
         try{
         const currenttime = moment(Date.now()).format('DD/MM/YY'); 
         const args = (messageCreate.content.slice(prefix.length).trim().split(/ +/g))
-        const guild = await messageCreate.client.guilds.fetch(GUILD_ID).catch(e => {console.log(`There was an error: ${e}`)});
+        const server = messageCreate.client.guilds.cache.find(g => g.id === generic_server);
+        if(!server){
+            return console.log(`Could not find guild with ID ${generic_server}`);
+        }
         const channel = await messageCreate.client.channels.cache.find(channel => channel.name === `${messageCreate.author.id}`);
         const isLink = new RegExp(/https?:\/\/\S+/g).test(messageCreate.content);
 
@@ -28,7 +31,7 @@ console.log("is not bot")
         if(!channel){
 console.log("ticket channel does not exist")
         const threadcat = await messageCreate.client.channels.fetch(THREAD_CATEGORY_ID).catch(e => {console.log(`There was an error: ${e}`)});
-        const ticket = await guild.channels.create({name: `${messageCreate.author.id}`, parent: threadcat}).catch(e => {console.log(`There was an error: ${e}`)});
+        const ticket = await server.channels.create({name: `${messageCreate.author.id}`, parent: threadcat}).catch(e => {console.log(`There was an error: ${e}`)});
         
        let ticketembed = new Discord.EmbedBuilder()
 .setAuthor({name: `${messageCreate.author.tag}`})
@@ -53,7 +56,7 @@ messageCreate.author.send({content: `Thank's for opening a support thread! Your 
      channel.send({content: `**FROM: ${messageCreate.author.username}** - ${messageCreate.content}`}).catch(e => {console.log(`There was an error: ${e}`)});
     }
 console.log(messageCreate.author.id)
-console.log(guild.name)
+console.log(server.name)
   }
 }
 

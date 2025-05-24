@@ -2,9 +2,9 @@ const moment = require("moment");
 const mongoose = require("mongoose");
 const Open = require("../models/ModMailSchema");
 const Discord = require("discord.js");
-const { prefix, ownerID } = require("../config.json");
-
-const GUILD_ID = "864306095388229632";
+const { prefix } = require("../config.json");
+const ownerID = process.env.OWNERID_ID
+const generic_server = process.env.GENERIC_SERVER
 const THREAD_CATEGORY_ID = "864306096624893973";
 
 module.exports = {
@@ -13,10 +13,11 @@ module.exports = {
     try {
       const currenttime = moment(Date.now()).format("DD/MM/YY");
       if (newMessage.author.bot || !newMessage.guild) return;
-
-      const guild = await newMessage.client.guilds.fetch(GUILD_ID).catch(e =>
-        console.log(`Guild fetch error: ${e}`)
-      );
+      const server = messageCreate.client.guilds.cache.find(g => g.id === generic_server);
+      if(!server){
+          return console.log(`Could not find guild with ID ${generic_server}`);
+      }
+    
       const isLink = /https?:\/\/\S+/gi.test(newMessage.content);
 
       const { censor } = require("./censor.json");

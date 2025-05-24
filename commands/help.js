@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "help",
     description: "implements discord.js v13 select menu for a help command",

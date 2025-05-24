@@ -1,6 +1,6 @@
 const {prefix} = require("../config.json")
 const Discord = require('discord.js');
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
 	name: '8ball',
 	description: 'The bots invite link',

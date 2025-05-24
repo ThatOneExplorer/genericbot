@@ -1,7 +1,7 @@
 const Discord = require ("discord.js")
 const moment = require("moment")
 const {prefix} = require("../config.json")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "purge",
     description: "chunk deletes messages with a given number",

@@ -1,7 +1,7 @@
 const packageJSON = require("../package.json");
 const Discord = require('discord.js')
 const { prefix } = require("../config.json")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 const punishments = require("../models/ModSchema");
 const moment = require ("moment")
 const currenttime = moment(Date.now()).format('DD/MM/YY HH:mm:ss');

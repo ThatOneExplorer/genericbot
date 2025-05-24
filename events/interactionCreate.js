@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
+const generic_server = process.env.GENERIC_SERVER
 module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction) {

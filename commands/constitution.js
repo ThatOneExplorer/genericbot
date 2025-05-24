@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const {ownerID} = require("../config.json");
+const ownerID = process.env.OWNERID_ID
 const { discordSort } = require("discord.js");
 module.exports = {
 	name: 'constitution',

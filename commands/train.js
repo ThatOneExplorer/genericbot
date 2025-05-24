@@ -1,6 +1,8 @@
 const axios = require("axios");
 const { parseStringPromise } = require("xml2js");
-const { prefix, ownerID, translinkAPI } = require("../config.json");
+const { prefix} = require("../config.json");
+const ownerID = process.env.OWNERID_ID
+const translinkAPI = process.env.TRANSLINK_API
 const Discord = require("discord.js");
 const moment = require("moment");
 

@@ -1,12 +1,13 @@
 const moment = require("moment")
 const Discord = require('discord.js')
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
+const generic_server = process.env.GENERIC_SERVER
 const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
 module.exports = {
 	name: 'guildMemberAdd',
 	async execute(member){
-		const server = member.client.guilds.cache.find(g => g.id ==="864306095388229632");
+		const server = member.client.guilds.cache.find(g => g.id === generic_server);
 		const membercount = server.channels.cache.find(ch => ch.id === '864306096004399148');
 	await server.members.fetch()
 	let membernum = server.memberCount

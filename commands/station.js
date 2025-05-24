@@ -2,7 +2,7 @@ const axios = require("axios");
 const { parseStringPromise } = require("xml2js");
 const { prefix } = require("../config.json");
 const Discord = require("discord.js");
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "station",
     description: "Get information about any Irish Rail station.",

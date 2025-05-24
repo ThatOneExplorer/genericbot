@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
 const {prefix} = require("../config.json")
-const {ownerID} = require("../config.json")
+const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "delete",
     description: "deletes a modlog entry",
