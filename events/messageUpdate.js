@@ -38,6 +38,7 @@ module.exports = {
           .setTitle("Censor Alert Triggered (Edited Message)")
           .addFields(
             { name: "Author", value: `<@${newMessage.author.id}>`, inline: true },
+            {name: "Old Content", value: oldMessage.content},
             { name: "New Content", value: newMessage.content },
             { name: "Message Link", value: `[Jump to Message](${newMessage.url})` }
           )
