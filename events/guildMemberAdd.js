@@ -1,5 +1,6 @@
 const moment = require("moment")
 const Discord = require('discord.js')
+require('dotenv').config();
 const ownerID = process.env.OWNERID_ID
 const generic_server = process.env.GENERIC_SERVER
 const mongoose = require("mongoose")

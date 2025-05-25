@@ -1,4 +1,5 @@
 const moment = require("moment")
+require('dotenv').config();
 const mongoose = require("mongoose")
 const Open = require("../models/ModMailSchema");
 const Discord = require('discord.js')

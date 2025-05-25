@@ -1,4 +1,5 @@
 const {prefix} = require("../config.json")
+require('dotenv').config();
 const Discord = require('discord.js');
 const ownerID = process.env.OWNERID_ID
 module.exports = {

@@ -1,9 +1,10 @@
 const moment = require("moment");
 const mongoose = require("mongoose");
 const Open = require("../models/ModMailSchema");
+require('dotenv').config();
 const Discord = require("discord.js");
 const { prefix } = require("../config.json");
-const ownerID = process.env.OWNERID_ID
+const ownerID = process.env.OWNER_ID
 const generic_server = process.env.GENERIC_SERVER
 const THREAD_CATEGORY_ID = "864306096624893973";
 
@@ -13,7 +14,7 @@ module.exports = {
     try {
       const currenttime = moment(Date.now()).format("DD/MM/YY");
       if (newMessage.author.bot || !newMessage.guild) return;
-      const server = messageCreate.client.guilds.cache.find(g => g.id === generic_server);
+      const server = newMessage.client.guilds.cache.find(g => g.id === generic_server);
       if(!server){
           return console.log(`Could not find guild with ID ${generic_server}`);
       }
@@ -48,7 +49,7 @@ module.exports = {
           .catch(console.log);
 
         if (newMessage.deletable) {
-            if(messageCreate.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)){
+            if(newMessage.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)){
                 return console.log("has manage messages permissions ");
             }
           await newMessage.delete().catch(e => console.log(`Delete failed: ${e}`));

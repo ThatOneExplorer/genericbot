@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+require('dotenv').config();
 module.exports = {
 name: "ping",
 description: "returns ping to discord's API",

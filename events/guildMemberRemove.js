@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const ownerID = process.env.OWNERID_ID
+require('dotenv').config();
 const generic_server = process.env.GENERIC_SERVER
 module.exports = {
 	name: 'guildMemberRemove',

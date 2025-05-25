@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+require('dotenv').config();
 const ownerID = process.env.OWNERID_ID
 module.exports = {
     name: "help",

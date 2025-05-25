@@ -1,4 +1,5 @@
 const Discord = require ("discord.js")
+require('dotenv').config();
 const moment = require("moment")
 const {prefix} = require("../config.json")
 const ownerID = process.env.OWNERID_ID

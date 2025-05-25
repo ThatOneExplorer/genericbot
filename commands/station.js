@@ -1,4 +1,5 @@
 const axios = require("axios");
+require('dotenv').config();
 const { parseStringPromise } = require("xml2js");
 const { prefix } = require("../config.json");
 const Discord = require("discord.js");

@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+require('dotenv').config();
 const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
 const moment = require("moment")
