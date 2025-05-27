@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.0.1] - 27-05-25
+
+### Added
+
+- Fixed up **train.js** for better code readability and end-user experience
+
 ## [v1.0.0] - 2025-05-25
 
 ### Added
