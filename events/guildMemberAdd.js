@@ -1,20 +1,23 @@
-const moment = require("moment")
-const Discord = require('discord.js')
+const moment = require("moment");
+const Discord = require('discord.js');
 require('dotenv').config();
-const ownerID = process.env.OWNERID_ID
-const generic_server = process.env.GENERIC_SERVER
+const ownerID = process.env.OWNERID_ID;
+const generic_server = process.env.GENERIC_SERVER;
+const MEMBER_COUNT = process.env.MEMBER_COUNT;
+const GENERAL_CHAT = process.env.GENERAL_CHAT;
+const MEMBER_ROLE=process.env.MEMBER_ROLE;
 const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
 module.exports = {
 	name: 'guildMemberAdd',
 	async execute(member){
-		const server = member.client.guilds.cache.find(g => g.id === generic_server);
-		const membercount = server.channels.cache.find(ch => ch.id === '864306096004399148');
+		const server = member.client.guilds.cache.get(generic_server);
+		const membercount = server.channels.cache.get(MEMBER_COUNT)
 	await server.members.fetch()
 	let membernum = server.memberCount
 const currenttime = moment(Date.now()).format('DD/MM/YY');
 membercount.setName(`Members: ${server.memberCount} `)
-const generalchat = server.channels.cache.find(ch => ch.id === '864306096806428721');
+const generalchat = server.channels.cache.get(GENERAL_CHAT);
 		try{
 			console.log(`${member.user.tag} has just joined ${member.guild.name}`)
 				let data = await punishments.findOne({
@@ -32,8 +35,8 @@ const generalchat = server.channels.cache.find(ch => ch.id === '8643060968064287
 					await newData.save()
 					console.log(`created database entry for ${member.user.tag}`);
 				}
-				let roleid = "864306095416541192"
-				const memberrole = member.guild.roles.cache.find(role => role.id === roleid);
+				
+				const memberrole = member.guild.roles.cache.get(MEMBER_ROLE);
 				member.roles.add(memberrole)
 let welcome = new Discord.EmbedBuilder()
 .setTitle(`Welcome ${member.user.tag}!`)

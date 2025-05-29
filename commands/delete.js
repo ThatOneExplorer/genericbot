@@ -32,6 +32,11 @@ try{
            GuildID: messageCreate.guild.id,
            UserID: member.id || args[1],
        })
+        let modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
+        let modlogusername = modloguser.user.username
+        if(!modlogusername){
+            let modlogusername = data.UserID
+        }
        if(!data){
            let invalidmember = new Discord.EmbedBuilder()
            .setTitle(`Can't find member`)
@@ -43,7 +48,7 @@ try{
     if (!data.Punishments || data.Punishments.length === 0) {
         let nomodlogs = new Discord.EmbedBuilder()
             .setTitle(`No modlogs found!`)
-            .setDescription(`Modlogs could not be found for ${member.username}`)
+            .setDescription(`Modlogs could not be found for ${modlogusername}`)
             .setColor("Green");
         return messageCreate.reply({ embeds: [nomodlogs] });
     }
@@ -67,7 +72,7 @@ const punishmentID = args[2];
 
         let deleteall = new Discord.EmbedBuilder()
             .setTitle(`Punishments removed`)
-            .setDescription(`All punishments for ${member.username} have been removed.`)
+            .setDescription(`All punishments for ${modlogusername} have been removed.`)
             .setColor("Green")
        return messageCreate.reply({embeds: [deleteall]})
     }

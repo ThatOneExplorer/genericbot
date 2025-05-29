@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 require('dotenv').config();
 const {prefix} = require("../config.json")
 const ownerID = process.env.OWNERID_ID
+const SUGGESTIONS_CHANNEL = process.env.SUGGESTIONS_CHANNEL
 module.exports = {
     name: "suggest",
     description: "suggestion command",
@@ -30,8 +31,7 @@ if(!suggestion){
    return messageCreate.reply({embeds: [nosuggestion]})
 }
 
-let suggestions = messageCreate.guild.channels.cache.find(ch => ch.id === ("1219403495472631868"))
-
+let suggestions = messageCreate.guild.channels.cache.get(SUGGESTIONS_CHANNEL)
 if(type === "server"){
 
    let suggestione = new Discord.EmbedBuilder()

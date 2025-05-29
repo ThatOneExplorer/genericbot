@@ -5,6 +5,7 @@ const punishments = require("../models/ModSchema");
 const moment = require("moment");
 const { prefix } = require("../config.json")
 const ownerID = process.env.OWNERID_ID
+const MUTE_ROLE = process.env.MUTE_ROLE
 const ms = require("ms");
 module.exports ={
     name: "mute",
@@ -56,8 +57,7 @@ module.exports ={
             return messageCreate.reply({embeds: [noreason]})
         }
 
-        let roleid = "864306095626780681"
-        const muterole = messageCreate.guild.roles.cache.find(role => role.id === roleid);
+        const muterole = messageCreate.guild.roles.cache.get(MUTE_ROLE);
         if(!muterole){
             let norole = new Discord.EmbedBuilder()
             .setTitle(`No mute role found!`)

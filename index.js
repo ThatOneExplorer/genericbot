@@ -15,8 +15,6 @@ IntentsBitField.Flags.DirectMessages
 ] });
 const fs = require('fs');
 const { mongoose } = require('mongoose');
-client.login(token)
-
 client.commands = new Collection();
     const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -25,6 +23,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+mongoose.set('strictQuery', false)
 mongoose.connect(connection_string, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -33,6 +32,8 @@ console.log(`Connected to MongoDB`)
 }).catch((err) =>{
 console.log(err)
 })
+
+client.login(token)
 
 client.on("messageCreate", async messageCreate => {
 	if (!messageCreate.content.startsWith(prefix) || messageCreate.author.bot) return;
@@ -51,23 +52,24 @@ const args = messageCreate.content.slice(prefix.length).trim().split(/ +/g);
 
 	if (!client.commands.has(command)) return;
 	try {
+		console.log(command)
 		client.commands.get(command).execute(messageCreate, args,);
 	} catch (error) {
 		console.error(error);
 		messageCreate.reply('there was an error trying to execute that command!');
 	}
  });
-
- const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
  for (const file of eventFiles) {
-	 const event = require(`./events/${file}`);
-	 if (event.once) {
-		 client.once(event.name, (...args) => event.execute(...args));
-	 } else {
-		 client.on(event.name, (...args) => event.execute(...args));
-	 }
- }
+	const event = require(`./events/${file}`);
+	console.log(`[EVENT REGISTERED] ${event.name}`);
+
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
 function clean(text) {
 	if (typeof(text) === "string")
 	  return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));

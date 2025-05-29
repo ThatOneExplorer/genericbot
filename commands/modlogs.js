@@ -33,6 +33,11 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
         GuildID: messageCreate.guild.id,
         UserID: member.id || args[1],
     })
+     let modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
+        let modlogusername = modloguser.user.username
+        if(!modlogusername){
+            let modlogusername = data.UserID
+        }
     if(!data){
         let invalidmember = new Discord.EmbedBuilder()
         .setTitle(`Can't find member`)
@@ -44,16 +49,15 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
      if (!data.Punishments || data.Punishments.length === 0) {
             let nomodlogs = new Discord.EmbedBuilder()
                 .setTitle(`No modlogs found!`)
-                .setDescription(`Modlogs could not be found for ${member.username}`)
+                .setDescription(`Modlogs could not be found for ${modlogusername}`)
                 .setColor("Green");
             return messageCreate.reply({ embeds: [nomodlogs] });
         }
         
     else if (data) {
-        const modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
         let embeds = [];
         let modlogembed = new Discord.EmbedBuilder()
-            .setTitle(`Modlogs retrieved for (${data.UserID})`)
+            .setTitle(`Modlogs retrieved for ${modlogusername}`)
             .setTimestamp();
     
         let charCount = 0;
@@ -68,7 +72,7 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
             if (charCount + fieldName.length + fieldValue.length > 5900 || fieldCount >= 25) {
                 embeds.push(modlogembed);  // Push the current embed
                 modlogembed = new Discord.EmbedBuilder()
-                    .setTitle(`Modlogs retrieved for ${modloguser.user.tag} (${data.UserID})`)
+                    .setTitle(`Modlogs retrieved for ${modlogusername}`)
                     .setTimestamp();
                 charCount = 0;
                 fieldCount = 0;

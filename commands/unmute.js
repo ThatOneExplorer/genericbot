@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 require('dotenv').config();
 const {prefix} = require("../config.json")
 const ownerID = process.env.OWNERID_ID
+const MUTE_ROLE = process.env.MUTE_ROLE
 module.exports ={
  name: "unmute",
     description: "unmute a mentioned user",
@@ -15,8 +16,7 @@ module.exports ={
             .setColor("Red")
             return messageCreate.reply({embeds: [nopermission]});
         }
-       let roleid = "864306095626780681"
-        const muterole = messageCreate.guild.roles.cache.find(role => role.id === roleid);
+        const muterole = messageCreate.guild.roles.cache.find(MUTE_ROLE);
         if(!muterole){
             let norole = new Discord.EmbedBuilder()
             .setTitle(`No mute role found!`)

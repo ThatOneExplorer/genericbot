@@ -13,6 +13,6 @@ module.exports = client => {
         console.log(`Loading event: ${event}`);
     
         if (event === "ready") client.on(event, () => require(`../events/${event}`)(client)); 
-        else client.on(event, require(`../events/${event}`));
+       else client.on(event, require(`../events/${event}`));
     }
 };
