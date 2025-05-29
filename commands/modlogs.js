@@ -33,11 +33,7 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
         GuildID: messageCreate.guild.id,
         UserID: member.id || args[1],
     })
-     let modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
-        let modlogusername = modloguser.user.username
-        if(!modlogusername){
-            let modlogusername = data.UserID
-        }
+ 
     if(!data){
         let invalidmember = new Discord.EmbedBuilder()
         .setTitle(`Can't find member`)
@@ -45,6 +41,11 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
         .setColor("Red")
         return messageCreate.reply({embeds: [invalidmember]});
     }
+        let modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
+        let modlogusername = modloguser.user.username
+        if(!modlogusername)
+         modlogusername = data.UserID
+        
     
      if (!data.Punishments || data.Punishments.length === 0) {
             let nomodlogs = new Discord.EmbedBuilder()
@@ -90,15 +91,15 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
             await messageCreate.reply({ embeds: [embed] });
         }
     } 
-} catch(e){
-        console.log(e)
+} catch(error){
+        console.log(error)
         let errorembed = new Discord.EmbedBuilder()
         .setTitle(`An error has occured!`)
         .setDescription(`An error has occured while trying to perform this action, the owner of this bot has been notified.`)
          .setColor("Red")
        await messageCreate.reply({embeds: [errorembed]})
        const owner = messageCreate.guild.members.cache.get(ownerID)
-       return owner.send(`${e}`)
+       return owner.send(`${error}`)
     }
 }
 }

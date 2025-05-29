@@ -1,6 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v.1.1.1] - 27-05-25
+
+## Added 
+
+- No new changes
+
+## Changed
+
+- Fixed bug in modlogs, line 36 would return an error if args[1] was a string
+
+## Removed
+
+- No new removals
+
 ## [v1.1.0] - 
 
 ## Added
