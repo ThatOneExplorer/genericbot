@@ -11,3 +11,6 @@ GENERAL_CHAT=<ID of main / general chat>
 MEMBER_ROLE=<ID of member / base role>
 SUGGESTIONS_CHANNEL=<ID of channel you wish suggestions to be sent to>
 MUTE_ROLE=<ID of mute role>
+MINECRAFT_HOST=<Minecraft server IP>
+MINECRAFT_STATUS=<Status Channel ID>
+MINECRAFT_PLAYER_COUNT=<Player Count Channel ID>

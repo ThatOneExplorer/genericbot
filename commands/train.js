@@ -170,7 +170,7 @@ module.exports = {
 
             const owner = messageCreate.guild?.members?.cache?.get(ownerID);
             if (owner) {
-                owner.send(`Train command error:\n\`\`\`${error.stack || error.message}\`\`\``);
+                owner.user.send(`Train command error:\n\`\`\`${error.stack || error.message}\`\`\``);
             }
         }
     }

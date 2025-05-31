@@ -94,7 +94,7 @@ module.exports = {
       try {
         await newMessage.reply({ embeds: [errorembed] });
         const owner = await newMessage.client.users.fetch(ownerID);
-        await owner.send(`Censor error (on edit):\n\`\`\`${error.stack || error}\`\`\``);
+        await owner.user.send(`Censor error (on edit):\n\`\`\`${error.stack || error}\`\`\``);
       } catch {
         console.log("Could not notify bot owner via DMs");
       }

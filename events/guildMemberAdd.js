@@ -8,6 +8,7 @@ const GENERAL_CHAT = process.env.GENERAL_CHAT;
 const MEMBER_ROLE=process.env.MEMBER_ROLE;
 const mongoose = require("mongoose")
 const punishments = require("../models/ModSchema");
+const messageCreate = require("./messageCreate");
 module.exports = {
 	name: 'guildMemberAdd',
 	async execute(member){
@@ -60,6 +61,8 @@ let welcomemain = new Discord.EmbedBuilder()
 generalchat.send({content: `<@${member.id}> has just joined the server!`, embeds:[welcomemain]}).catch(e => console.log(e))
 } catch(e){
 	console.log(e)
+	const owner = member.guild.members.cache.get(ownerID)
+	owner.user.send(e)
 }
     }
 }

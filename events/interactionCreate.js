@@ -211,7 +211,7 @@ interaction.update({embeds: [A1E]});
      .setColor("Red")
    await messageCreate.reply({embeds: [errorembed]})
    const owner = messageCreate.guild.members.cache.get(ownerID)
-   return owner.send(`${e}`)
+   return owner.user.send(`${e}`)
 }
         
      //   }

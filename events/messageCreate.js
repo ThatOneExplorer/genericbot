@@ -163,7 +163,7 @@ module.exports = {
             }
         } catch (e){
             console.log(e);
-            if(owner) owner.send(`${e}`).catch(() => {});
+            if(owner) owner.user.send(`${e}`).catch(() => {});
         }
     }
 }

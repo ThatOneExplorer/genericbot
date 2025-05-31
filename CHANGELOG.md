@@ -1,6 +1,26 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.2.0] - 31-05-25
+
+## Added
+
+- Added !mc command, provides a status update on the minecraft server
+
+- Minecraft server status updates are sent periodically to discord server to display status
+
+## Changed
+
+- Added MINECRAFT_HOST, MINECRAFT_STATUS, MINECRAFT_PLAYER_COUNT to .env representing channel ids
+
+- Reflected .env additions in envexample.txt
+
+- owner.send changed to owner.user.send in error handling across most commands and events
+
+## Removed
+
+- No new removals made
+
 # [v.1.1.1] - 27-05-25
 
 ## Added 

@@ -99,7 +99,7 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
          .setColor("Red")
        await messageCreate.reply({embeds: [errorembed]})
        const owner = messageCreate.guild.members.cache.get(ownerID)
-       return owner.send(`${error}`)
+       return owner.user.send(`${error}`)
     }
 }
 }
