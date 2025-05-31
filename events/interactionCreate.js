@@ -19,7 +19,9 @@ try{
                 {name: `Ban`, value: `Bans a mentioned user from the server`},
                 {name: `Modlogs`, value: `Retrieves a user's modlogs from database`},
                 {name: `Delete`, value: `Delete an entry from a users modlogs`},
-                {name: `Purge`, value: `Bulk deletes a given amount of messages`}
+                {name: `Purge`, value: `Bulk deletes a given amount of messages`},
+                {name: "Censor", value: `Modify and view the censorlist`},
+                {name: "Whitelist", value: `Modify and view the whitelist`}
             )
             .setColor("Orange")
         interaction.update({embeds: [Moderation]});
@@ -42,7 +44,9 @@ try{
                 .addFields(
                     {name: `Suggest`, value: `Have any suggestions for the server? A suggestion for a video? Or any other suggestion? This command will forward your suggestion to the staff team!`},
                     {name: `Ping`, value: `Pings Discord's API and gets a response`},
-                    {name: "Constitution", value: "Creates a menu to display constitution articles"}
+                    {name: "Constitution", value: "Creates a menu to display constitution articles"},
+                    {name: "Mc", value: "Provides info on the minecraft server"}
+                    
                 )
                 .setColor("Yellow")
                 interaction.update({embeds: [Misc]})

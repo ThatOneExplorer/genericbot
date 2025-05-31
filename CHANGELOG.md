@@ -1,6 +1,19 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.2.1] = 31-05-25
+## Added
+
+- No new additions
+
+## Changed
+
+- Updated help command and interactions to reflect new commands added
+
+## Removals
+
+- Nothing removed
+
 # [v1.2.0] - 31-05-25
 
 ## Added
