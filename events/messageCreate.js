@@ -18,11 +18,12 @@ module.exports = {
         const args = (messageCreate.content.slice(prefix.length).trim().split(/ +/g));
         const server = messageCreate.client.guilds.cache.get(GENERIC_SERVER);
         try {
+            if(messageCreate.author.bot) return;
             if(!server) return console.log(`Could not find guild with ID ${GENERIC_SERVER}`);
             const channel = await messageCreate.client.channels.cache.find(ch => ch.name === `${messageCreate.author.id}`);
             const isLink = /https?:\/\/\S+/g.test(messageCreate.content);
             if(!messageCreate.guild){ 
-                if(messageCreate.author.bot) return;
+              
                 if(!channel){
                     const threadcat = await messageCreate.client.channels.fetch(THREAD_CATEGORY_ID).catch(() => {});
                     const ticket = await server.channels.create({name: `${messageCreate.author.id}`, parent: threadcat}).catch(() => {});
@@ -81,7 +82,7 @@ module.exports = {
                         try {
                             await ticketuser.send(`This thread has now been closed! Feel free to reopen another thread if you require more assistance.`);
                         } catch (error) {
-                            return errorNotify(error);
+                            errorNotify(error);
                         }
                         messageCreate.channel.delete().catch(() => {});
                     }, 5000);

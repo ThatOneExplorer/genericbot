@@ -1,6 +1,25 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.3] - 05-06-25
+
+## Added
+
+- Added unban command
+
+## Changed
+
+- ignore messages by bots at the start of messageCreate event
+
+- Fixed missing permission embed in ban to reflect missing ban permissions
+
+- User not being in guild no longer stops ticket from being deleted.
+
+- specified that times in train.js embed is in UTC for Translink
+
+## Removed
+
+- No new removals
 # [v1.2.1] = 31-05-25
 ## Added
 

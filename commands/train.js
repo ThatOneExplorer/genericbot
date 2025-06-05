@@ -101,7 +101,7 @@ module.exports = {
 
                 embed.addFields({
                     name: `🚉 Train to ${departure.transportation?.destination?.name || "Unknown"} from ${departure.transportation?.origin?.name || "Unknown"}`,
-                    value: `🕒 Due: ${plannedTime}\n` +
+                    value: `🕒 Due: ${plannedTime} UTC\n` +
                            `⏱️ Expected: ${estimatedTime}\n` +
                            `🛤 Platform: ${departure.location?.properties?.platform || "N/A"}\n` +
                            `🚆 Operator: ${departure.transportation?.operator?.name || "Unknown"}`,

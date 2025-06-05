@@ -50,8 +50,7 @@ module.exports ={
         if(!member.bannable){
 let notbannable = new Discord.EmbedBuilder()
 .setTitle(`Can not ban this user`)
-.setDescription(`I am either missing the Kick Members permission or this user has a role that is higher then mine!`)
-.setFooter({text: `could also be a possibility that this is an issue with the bot itself, in this case please report it to a server administrator / owner.`})
+.setDescription(`This user could not be banned.`)
 .setColor("Red")
  return messageCreate.reply({embeds: [notbannable]})
 }
