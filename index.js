@@ -36,17 +36,9 @@ console.log(err)
 client.login(token)
 
 client.on("messageCreate", async messageCreate => {
-	if (!messageCreate.content.startsWith(prefix) || messageCreate.author.bot) return;
- 
-	let commandindmembed = new EmbedBuilder()
-	.setColor('Red')
-	.setTitle(`${messageCreate.author.username}, ERROR`)
-	.addFields(
-		{name: `Unabled to execute this command`, value: `Commands are un-executable via dms`}
-	)
-
-if(!messageCreate.guild)
-return messageCreate.channel.send(commandindmembed)
+	if(!messageCreate.guild){
+		return;
+	}
 const args = messageCreate.content.slice(prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 
@@ -59,6 +51,7 @@ const args = messageCreate.content.slice(prefix.length).trim().split(/ +/g);
 		messageCreate.reply('there was an error trying to execute that command!');
 	}
  });
+
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
  for (const file of eventFiles) {
 	const event = require(`./events/${file}`);

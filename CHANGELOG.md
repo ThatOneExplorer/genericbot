@@ -1,6 +1,29 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.4] - 07-06-25
+
+## Added 
+
+- Added ./utils/[
+  censorfunction.js
+  checkmodlog.js
+  helpmenu.js
+  membercount.js
+  modmail.js
+  welcome.js
+]
+
+## Changed 
+
+- moved modmail, censoring, help menu, welcome, checkmodlog, welcome to seperate folder for improved readibility
+
+- users now recieve emoji confirmation for each message sent
+
+## Removed
+
+- censor.json as it is no longer used
+
 # [v1.3] - 05-06-25
 
 ## Added
