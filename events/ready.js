@@ -36,7 +36,9 @@ module.exports = {
 			readychannel.send({embeds: [readyembed]});
 
 			await checkmc(client)
-            setInterval(checkmc, 300000);
+          setInterval(() => {
+			  checkmc(client);
+		  }, 300000);
 
 		} catch(e){
 		console.error(e);

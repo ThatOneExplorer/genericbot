@@ -1,5 +1,6 @@
 const { ModalSubmitFields } = require("discord.js")
 const moment = require ("moment")
+const generic_server = process.env.GENERIC_SERVER;
 const MINECRAFT_HOST = process.env.MINECRAFT_HOST
 const MINECRAFT_STATUS = process.env.MINECRAFT_STATUS
 const MINECRAFT_PLAYER_COUNT = process.env.MINECRAFT_PLAYER_COUNT
@@ -21,9 +22,11 @@ async function checkmc(client) {
         if (STATUS) await STATUS.setName(`Server Status: Online 🟢`);
 
   } catch (error) {
-     const owner = client.guild.members.cache.get(ownerID)
+    const server = client.guilds.cache.get(GENERIC_SERVER)
+     const owner = server.members.cache.get(ownerID)
     console.error(error);
-    if (owner) owner.send(`${error}`).catch(() => {});
+   if (owner) 
+     owner.send(`${error}`).catch(() => {});
   }
 }
 module.exports = {checkmc}
