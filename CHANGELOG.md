@@ -1,6 +1,21 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.5] - 21-06-25
+
+## Added
+
+- Added ./commands/slowmode.js
+
+## Changed
+
+- Changed ./events/guildMemberAdd.js + ready.js
+
+- Changed ./utils/censorfunction.js + membercount.js + messageDelete.js + channelUpdate.js + channelDelete.js + channelCreate.js
+
+## Removed
+
+- No removals
 # [v1.4] - 07-06-25
 
 ## Added 

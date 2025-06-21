@@ -25,6 +25,9 @@ module.exports = {
 			const discordJSVersion = packageJSON.dependencies["discord.js"];
 			client.user.setActivity(`Slava generic! My prefix is ${prefix}`)
 			console.log(`Connected to discord, Successfully logged as ${client.user.username}, Runtime Enviorement Version (Node)${process.version} using discord.js version: ${discordJSVersion}`)
+			await client.guilds.fetch(generic_server);
+const guild = client.guilds.cache.get(generic_server);
+await guild.channels.fetch();
 		    await membercount(client);
 			await modlogall(client);
 

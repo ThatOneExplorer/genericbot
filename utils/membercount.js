@@ -7,7 +7,7 @@ const OWNERID_ID = process.env.OWNERID_ID;
 
 async function membercount(client, member) {
 	try {
-		const server = client.guilds.cache.get(GENERIC_SERVER);
+		const server = client.guilds.cache.get(GENERIC_SERVER)
 		if (!server) throw new Error("Server not found");
 
 		await server.members.fetch();
