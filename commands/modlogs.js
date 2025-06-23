@@ -67,8 +67,10 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
         let punishments = data.Punishments;
         punishments.forEach((Punishments) => {
             let fieldName = Punishments.PunishmentType || "Unknown Punishment";   
-            let fieldValue = `**Reason:** ${Punishments.Reason || "No reason provided."}`;
-    
+            let moderatorusername = messageCreate.guild.members.cache.get(Punishments.Moderator) || "Unknown Moderator";
+            let fieldValue = `**Reason:** ${Punishments.Reason || "No reason provided."}
+            **Moderator:** ${moderatorusername}
+            **Id:** ${Punishments.ID}`;
             // Check if adding this field exceeds the limits
             if (charCount + fieldName.length + fieldValue.length > 5900 || fieldCount >= 25) {
                 embeds.push(modlogembed);  // Push the current embed
@@ -80,7 +82,7 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
             }
     
             // Add the field
-            modlogembed.addFields({ name: `**Date:** (${Punishments.Date}) **Type:** (${fieldName}) **ID:** (${Punishments.ID})`, value: fieldValue, inline: false });
+            modlogembed.addFields({ name: `${fieldName}`, value: fieldValue, inline: false });
             fieldCount++;
         });
         // Push the last embed if needed

@@ -1,6 +1,19 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+# [v1.5.1] - 23-06-25
+## Added
+
+- No new additions
+
+## Changed
+
+- Changed ./commands/modlog.js
+
+## Removed
+
+- No new removals
 # [v1.5] - 21-06-25
 
 ## Added
