@@ -1,6 +1,22 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.6] - 29/06/25
+## Added
+
+- Added supportban and supportunban, these allow users to be banned or unbanned from opening modmails, these are reflected in modlogs. 
+
+- Added supportbanSchema
+
+## Changed
+
+- Changed ./utils/helpmenu.js to reflect recent additions
+
+- Changed ./utils/modmail.js to use new support banning features
+
+## Removed
+
+- No new removals. 
 
 # [v1.5.1] - 23-06-25
 ## Added

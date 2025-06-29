@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const SupportBan = require('../models/supportbanSchema');
 require('dotenv').config();
 
 const THREAD_CATEGORY_ID = process.env.THREAD_CATEGORY_ID;
@@ -8,6 +9,16 @@ const GENERIC_SERVER = process.env.GENERIC_SERVER;
 async function modmail(messageCreate) {
     try {
         if (messageCreate.author.bot) return;
+
+        if (!messageCreate.guild) {
+
+            const isBanned = await SupportBan.exists({ userId: messageCreate.author.id });
+            if (isBanned) {
+                console.log ("user is banned")
+                   return messageCreate.author.send("🚫 You are banned from opening support threads. If you believe this is a mistake, contact a staff member elsewhere."
+                ).catch(() => {});
+            }
+        }
 
         const server = messageCreate.client.guilds.cache.get(GENERIC_SERVER);
         if (!server) return console.log(`Could not find guild with ID ${GENERIC_SERVER}`);

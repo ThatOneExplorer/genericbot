@@ -18,7 +18,10 @@ try{
                 {name: `Delete`, value: `Delete an entry from a users modlogs`},
                 {name: `Purge`, value: `Bulk deletes a given amount of messages`},
                 {name: "Censor", value: `Modify and view the censorlist`},
-                {name: "Whitelist", value: `Modify and view the whitelist`}
+                {name: "Whitelist", value: `Modify and view the whitelist`},
+                {name: "Slowmode", value: "Adds a specified length of slomwode to channel"},
+                {name: "Supportban", value: "Bans a specified user from accessing modmail features"},
+                {name: "Supportunban", value: "Unbans a specified user and allows them to access modmail features."}
             )
             .setColor("Orange")
         interaction.update({embeds: [Moderation]});
@@ -42,7 +45,8 @@ try{
                     {name: `Suggest`, value: `Have any suggestions for the server? A suggestion for a video? Or any other suggestion? This command will forward your suggestion to the staff team!`},
                     {name: `Ping`, value: `Pings Discord's API and gets a response`},
                     {name: "Constitution", value: "Creates a menu to display constitution articles"},
-                    {name: "Mc", value: "Provides info on the minecraft server"}
+                    {name: "Mc", value: "Provides info on the minecraft server"}, 
+                    {name: "Help", value: "Provides dropdown menu for help"}
                     
                 )
                 .setColor("Yellow")
