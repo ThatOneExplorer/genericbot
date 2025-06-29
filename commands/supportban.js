@@ -95,7 +95,7 @@ const punishmentCode = generatePunishmentCode(10);
         }
 
         let ban = new Discord.EmbedBuilder()
-        .setTitle(`Successfully issued ** SUPPORT BAN** to ${member.user.username}`)
+        .setTitle(`Successfully issued **SUPPORT BAN** to ${member.user.username}`)
         .addFields(
             { name: 'Moderator', value: `${messageCreate.author.tag}`, inline: true }, { name: 'Reason', value: `${reason}`, inline: true },
         )        
@@ -103,14 +103,13 @@ const punishmentCode = generatePunishmentCode(10);
      
     messageCreate.reply({embeds: [ban]})
     let bandm = new Discord.EmbedBuilder()
-    .setTitle(`You have been ** SUPPORT BANNED** from ${messageCreate.guild.name}!`)
+    .setTitle(`You have been **SUPPORT BANNED** from ${messageCreate.guild.name}!`)
     .addFields(
         { name: 'Moderator', value: `${messageCreate.author.tag}`, inline: true }, { name: 'Reason', value: `${reason}`, inline: true },
     )
 .setFooter({text: `Punishment ID: ${punishmentCode}`})
 .setDescription(`You will no longer be able to access modmail.`)
     await member.send({embeds: [bandm]}).catch(e => {messageCreate.channel.send(`Error occured while trying to dm ${member.username}: ${e}`)})
-    member.ban({reason:`${reason}`});
 } catch(e){
     console.log(e)
     let errorembed = new Discord.EmbedBuilder()
