@@ -168,10 +168,16 @@ module.exports = {
 
             await messageCreate.reply({ embeds: [errorembed] });
 
-            const owner = messageCreate.guild?.members?.cache?.get(ownerID);
-            if (owner) {
-                owner.user.send(`Train command error:\n\`\`\`${error.stack || error.message}\`\`\``);
-            }
+          try {
+    const owner = await messageCreate.guild.members.fetch(ownerID);
+    if (owner && owner.user) {
+        await owner.user.send(`${e}`);
+    } else {
+        console.warn("Owner not found or DMs unavailable.");
+    }
+} catch (err) {
+    console.warn("Failed to send error to owner:", err);
+}
         }
     }
 };

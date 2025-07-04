@@ -42,9 +42,14 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
         return messageCreate.reply({embeds: [invalidmember]});
     }
         let modloguser = messageCreate.guild.members.cache.get(`${data.UserID}`);
-        let modlogusername = modloguser.user.username
-        if(!modlogusername)
-         modlogusername = data.UserID
+let modlogusername;
+
+if (modloguser) {
+    modlogusername = modloguser.user.username;
+} else {
+    modlogusername = data.UserID;
+}
+
         
     
      if (!data.Punishments || data.Punishments.length === 0) {
@@ -71,9 +76,9 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
             let fieldValue = `**Reason:** ${Punishments.Reason || "No reason provided."}
             **Moderator:** ${moderatorusername}
             **Id:** ${Punishments.ID}`;
-            // Check if adding this field exceeds the limits
+            
             if (charCount + fieldName.length + fieldValue.length > 5900 || fieldCount >= 25) {
-                embeds.push(modlogembed);  // Push the current embed
+                embeds.push(modlogembed);  
                 modlogembed = new Discord.EmbedBuilder()
                     .setTitle(`Modlogs retrieved for ${modlogusername}`)
                     .setTimestamp();
@@ -81,14 +86,14 @@ let member = messageCreate.mentions.users.first() || messageCreate.guild.members
                 fieldCount = 0;
             }
     
-            // Add the field
+            
             modlogembed.addFields({ name: `${fieldName}`, value: fieldValue, inline: false });
             fieldCount++;
         });
-        // Push the last embed if needed
+        
         embeds.push(modlogembed);
     
-        // Send all embeds
+        
         for (const embed of embeds) {
             await messageCreate.reply({ embeds: [embed] });
         }

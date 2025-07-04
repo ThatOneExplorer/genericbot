@@ -51,8 +51,16 @@ module.exports ={
             .setDescription(`An error has occured while trying to perform this action, the owner of this bot has been notified.`)
              .setColor("Red")
            await messageCreate.reply({embeds: [errorembed]})
-           const owner = messageCreate.guild.members.cache.get(ownerID)
-           return owner.user.send(`${e}`)
+         try {
+    const owner = await messageCreate.guild.members.fetch(ownerID);
+    if (owner && owner.user) {
+        await owner.user.send(`${e}`);
+    } else {
+        console.warn("Owner not found or DMs unavailable.");
+    }
+} catch (err) {
+    console.warn("Failed to send error to owner:", err);
+}
         }
     }
     }

@@ -1,6 +1,23 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.6.1] - 04-07-25
+
+## Added
+- No new additions
+
+## Changed 
+
+- Changed ./commands/modlog.js to prevent crashes from trying to access usernames not in server
+
+- Changed ./events/messageDelete.js to log deleted attachments
+
+- Changed all ./commands/ to have better error handling and not crash if owner can not be dm'd
+
+## Removed
+
+- No new removals
+
 # [v1.6] - 29/06/25
 ## Added
 

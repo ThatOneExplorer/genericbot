@@ -7,6 +7,7 @@ module.exports = {
   description: "adds, removes and inspects the censor list",
 
   async execute(messageCreate) {
+
     const args = messageCreate.content.slice(prefix.length).trim().split(/ +/g);
     const subcommand = args[1];
     const word = args[2]?.toLowerCase();
