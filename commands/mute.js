@@ -81,6 +81,7 @@ module.exports ={
         
         // Example Usage:
         const punishmentCode = generatePunishmentCode(10); 
+        const unmuteAt = Date.now() + ms(time);
         let data =  await punishments.findOne({
             GuildID: messageCreate.guild.id,
             UserID: member.id
@@ -92,9 +93,10 @@ module.exports ={
             Time: time,
             Reason: reason,
             Date: currenttime,
-            ID: punishmentCode
+            ID: punishmentCode,
+            UnmuteAt: unmuteAt
         });
-        data.save();
+        await data.save();
         } else if (!data){
             let newData = new punishments({
         GuildID: messageCreate.guild.id,
@@ -105,10 +107,11 @@ module.exports ={
         Time: time,
         Reason: reason,
         Date: currenttime,
-        ID: punishmentCode
+        ID: punishmentCode,
+        UnmuteAt: unmuteAt
         }, ],
             });
-            newData.save();
+            await newData.save();
         }
 
         let mute = new Discord.EmbedBuilder()

@@ -10,6 +10,7 @@ const ready_channel = process.env.READY_CHANNEL
 const {modlogall} = require ("../utils/modlogall.js");
 const {membercount} = require("../utils/membercount.js");
 const {checkmc} = require ("../utils/checkmc.js");
+const {checkmutes} = require ("../utils/checkmutes.js")
 module.exports = {
 	name: 'ready',
 	once: true,
@@ -30,7 +31,7 @@ const guild = client.guilds.cache.get(generic_server);
 await guild.channels.fetch();
 		    await membercount(client);
 			await modlogall(client);
-
+            await checkmutes(client);
 			let readyembed = new Discord.EmbedBuilder()
 				.setTitle(`Bot initialised and ready!`)
 				.setColor("Green")
@@ -41,7 +42,7 @@ await guild.channels.fetch();
 			await checkmc(client)
           setInterval(() => {
 			  checkmc(client);
-		  }, 300000);
+		  }, 600000);
 
 		} catch(e){
 		console.error(e);

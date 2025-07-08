@@ -1,6 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.7] - 08/07/25
+### Description
+- This version aims to fix issues surrounding mutes by checking for active and expired mutes on ready.js, to prevent the infintely muted issue on bot restarts. Also increased interval for MC query
+## Added
+- Added ./utils/checkmutes.js
+
+## Changed
+
+- Changed ./events/ready.js
+- Changed ./commands/mute.js
+
+## Removals
+
+- No new removals.
 # [v1.6.1] - 04-07-25
 
 ## Added
