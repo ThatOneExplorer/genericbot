@@ -1,6 +1,21 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+# [v1.7.1] - 28/07/25
+
+### Description
+- This version allows the bot to wwork effectively with NSFW channels and tidy up depreceated / no longer used files, and updated NPM packages.
+
+## Added
+
+## Changed
+
+- Changed ./utils/censorfunction.js 
+
+## Removals
+
+- Removed ./events/whitelist.json 
 # [v1.7] - 08/07/25
 ### Description
 - This version aims to fix issues surrounding mutes by checking for active and expired mutes on ready.js, to prevent the infintely muted issue on bot restarts. Also increased interval for MC query

@@ -6,7 +6,7 @@ require('dotenv').config();
 const OWNER_ID = process.env.OWNER_ID;
 const GENERIC_SERVER = process.env.GENERIC_SERVER;
 const ALERT_CHANNEL = process.env.ALERT_CHANNEL_ID;
-
+const NSFW_CHANNEL = process.env.NSFW_CHANNEL
 async function censorfunction(message) {
   if (message.author.bot) return;
 
@@ -32,14 +32,22 @@ async function censorfunction(message) {
 
     if (includedBadWord && !ignorebadword && !isLink) {
       if (!message.guild) return;
-    if (message.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)) return;
-
+   // if (message.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)) return;
+    const nsfwchannel = await(message.client.channels.fetch(NSFW_CHANNEL)).catch(() => null);
+    console.log(nsfwchannel)
+    if(!nsfwchannel){
+      console.log(`NSFW channel with ID ${NSFW_CHANNEL} not found`)
+    }
+    if(nsfwchannel){
+    if(message.channel.id == NSFW_CHANNEL){
+    return;
+    }
+    }
       const censoralert = await message.client.channels.fetch(ALERT_CHANNEL).catch(() => null);
       if (!censoralert) {
         console.log(`Censor alert channel ${ALERT_CHANNEL} not found`);
-        return;
       }
-
+ 
       const alert = new Discord.EmbedBuilder()
         .setTitle("Censor Alert Triggered")
         .addFields(
