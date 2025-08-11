@@ -12,8 +12,6 @@ module.exports = {
              .setTitle(`Member left: ${member.user.tag}`)
              .addFields(
                { name: `Member left`, value: `${member.content}`},
-               {name: `Message by`, value: `${member.author}`},
-               {name: `Link:`, value: `${member.url}`}
              )
              .setColor("Green")
              .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));

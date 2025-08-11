@@ -16,13 +16,14 @@ module.exports ={
             .setColor("Red")
             return messageCreate.reply({embeds: [nopermission]});
         }
-        const muterole = messageCreate.guild.roles.cache.find(MUTE_ROLE);
+       const muterole = messageCreate.guild.roles.cache.get(MUTE_ROLE);
         if(!muterole){
             let norole = new Discord.EmbedBuilder()
             .setTitle(`No mute role found!`)
             .setDescription(`The mute role was not found. Please contact a server administrator / owner if this error occurs.`)
-            .setFooter({text: `Tried to find role with id: ${roleid}`})
+            .setFooter({text: `Tried to find role with id: ${MUTE_ROLE}`})
             .setColor("Red")
+            messageCreate.reply(norole)
         }
 
         let member = messageCreate.mentions.members.first();

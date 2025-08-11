@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+# [v1.8] - 11/08/25
+
+### Description
+
+- Added "AI" Chat functionality.
+
+- Minor bug fixes 
+
+## Added
+
+- Added ./utils/aichat.js
+
+## Changed
+
+- Changed ./utils/censorfunction.js
+
+- Changed ./events/guildMemberRemove.js messageCreate.js ready.js
+
+## Removals
+
+- No new removals
+
 # [v1.7.1] - 28/07/25
 
 ### Description

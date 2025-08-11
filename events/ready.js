@@ -39,6 +39,10 @@ await guild.channels.fetch();
 			let readychannel = server.channels.cache.get(ready_channel)
 			readychannel.send({embeds: [readyembed]});
 
+	const { preloadMessages } = require("../utils/aichat");
+    await preloadMessages(client);
+    console.log("Preloaded general chat messages.");
+
 			await checkmc(client)
           setInterval(() => {
 			  checkmc(client);

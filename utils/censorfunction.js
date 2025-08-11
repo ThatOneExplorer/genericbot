@@ -33,15 +33,12 @@ async function censorfunction(message) {
     if (includedBadWord && !ignorebadword && !isLink) {
       if (!message.guild) return;
    // if (message.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)) return;
-    const nsfwchannel = await(message.client.channels.fetch(NSFW_CHANNEL)).catch(() => null);
-    console.log(nsfwchannel)
-    if(!nsfwchannel){
-      console.log(`NSFW channel with ID ${NSFW_CHANNEL} not found`)
-    }
-    if(nsfwchannel){
-    if(message.channel.id == NSFW_CHANNEL){
-    return;
-    }
+      if (message.author.bot){
+        return;
+      }
+    if(message.channel.nsfw){
+      return;
+   
     }
       const censoralert = await message.client.channels.fetch(ALERT_CHANNEL).catch(() => null);
       if (!censoralert) {
