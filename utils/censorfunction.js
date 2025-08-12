@@ -32,7 +32,7 @@ async function censorfunction(message) {
 
     if (includedBadWord && !ignorebadword && !isLink) {
       if (!message.guild) return;
-   // if (message.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)) return;
+      if (message.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)) return;
       if (message.author.bot){
         return;
       }

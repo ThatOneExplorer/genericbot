@@ -2,6 +2,14 @@ let generalMessages = [];
 const GENERAL_CHANNEL_ID = process.env.GENERAL_CHAT;
 const AI_CHANNEL_ID = process.env.AI_CHANNEL;
 
+
+function removementions(content) {
+    return content
+        .replace(/@everyone/g, '@ everyone ')
+        .replace(/@here/g, '@ here ')
+        .trim();
+}
+
 async function preloadMessages(client) {
     const channel = client.channels.cache.get(GENERAL_CHANNEL_ID);
     if (!channel || !channel.isTextBased()) return;
@@ -21,7 +29,6 @@ async function preloadMessages(client) {
         lastId = fetchedMessages.last().id;
     }
 
-
     messages.reverse().forEach(message => {
         if (message.author.bot) return;
         if (!message.content || message.content.trim().length === 0) return;
@@ -30,7 +37,9 @@ async function preloadMessages(client) {
         if (/https?:\/\//i.test(message.content)) return;
         if (message.content.startsWith("!")) return;
         if (message.content.length > 2000) return;
-        generalMessages.push(message.content);
+
+        const safeContent = removementions(message.content);
+        if (safeContent) generalMessages.push(safeContent);
     });
 }
 
@@ -44,15 +53,22 @@ async function AIchat(message) {
         if (/https?:\/\//i.test(message.content)) return;
         if (message.content.startsWith("!")) return;
         if (message.content.length > 2000) return;
-        generalMessages.push(message.content);
-        if (generalMessages.length > 500) generalMessages.shift();
+
+        const safeContent = removementions(message.content);
+        if (safeContent) {
+            generalMessages.push(safeContent);
+            if (generalMessages.length > 500) generalMessages.shift();
+        }
     }
 
     if (message.channel.id === AI_CHANNEL_ID) {
         if (generalMessages.length === 0) return message.reply("Shut up");
         const randomMessage = generalMessages[Math.floor(Math.random() * generalMessages.length)];
         
-        message.reply(randomMessage).catch(() => {});
+        message.reply({
+            content: randomMessage,
+            allowedMentions: { parse: ['users', 'roles'] } // allow member + role pings, block everyone/here
+        }).catch(() => {});
     }
 }
 

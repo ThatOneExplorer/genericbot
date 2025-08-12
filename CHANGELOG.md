@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [v1.8.1] - 12/08/25
+
+### Description
+
+- Bug fixes
+
+- Prevent AIChat from pinging everyone and here
+
+- Moderators no longer affected by censor
+
 # [v1.8] - 11/08/25
 
 ### Description
