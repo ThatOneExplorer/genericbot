@@ -1,67 +1,36 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 require('dotenv').config();
-const {prefix} = require("../config.json")
-const ownerID = process.env.OWNERID_ID
-const MUTE_ROLE = process.env.MUTE_ROLE
-module.exports ={
- name: "unmute",
-    description: "unmute a mentioned user",
-    async execute(messageCreate){
-        try{
-        const args = (messageCreate.content.slice(prefix.length).trim().split(/ +/g))
-        if(!messageCreate.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages)){
-            let nopermission = new Discord.EmbedBuilder()
-            .setTitle(`Uh oh!`)
-            .setDescription(`You do not have the permission to execute this command. This incident will be reported!`)
-            .setColor("Red")
-            return messageCreate.reply({embeds: [nopermission]});
-        }
-       const muterole = messageCreate.guild.roles.cache.get(MUTE_ROLE);
-        if(!muterole){
-            let norole = new Discord.EmbedBuilder()
-            .setTitle(`No mute role found!`)
-            .setDescription(`The mute role was not found. Please contact a server administrator / owner if this error occurs.`)
-            .setFooter({text: `Tried to find role with id: ${MUTE_ROLE}`})
-            .setColor("Red")
-            messageCreate.reply(norole)
-        }
+const punishments = require("../models/ModSchema");
+const { prefix } = require("../config.json");
+const MUTE_ROLE = process.env.MUTE_ROLE;
 
-        let member = messageCreate.mentions.members.first();
-         if(!member){
-            let invalidmember = new Discord.EmbedBuilder()
-            .setTitle(`Can't find member`)
-            .setDescription(`Is the user in the guild? Does the user exist? I can't mute someone who isn't in the server :/`)
-            .setColor("Red")
-            return messageCreate.reply({embeds: [invalidmember]});
-        }
-        
-        let unmute = new Discord.EmbedBuilder()
-        .setTitle(`Successfully issued **UNMUTE** to ${member.user.username}`)
-        .addFields(          
-            { name: 'Moderator', value: `${messageCreate.author.tag}`, inline: true }
-        )
-     messageCreate.reply({embeds: [unmute]}).catch(e => {messageCreate.channel.send(`Couldn't send unmute embed${member.user.username}: ${e}`)})
-    await member.roles.remove(muterole).catch(e => {messageCreate.channel.send(`Couldn't unmute ${member.user.username}: ${e}`)});
-           let unmuted = new Discord.EmbedBuilder()
-           .setTitle(`Unmuted in ${messageCreate.guild}!`)
-            member.send({embeds: [unmuted]}).catch(e => {messageCreate.channel.send(`Couldn't send unmute embed to ${member.user.username}: ${e}`)})
-        } catch(e){
-            console.log(e)
-            let errorembed = new Discord.EmbedBuilder()
-            .setTitle(`An error has occured!`)
-            .setDescription(`An error has occured while trying to perform this action, the owner of this bot has been notified.`)
-             .setColor("Red")
-           await messageCreate.reply({embeds: [errorembed]})
-         try {
-    const owner = await messageCreate.guild.members.fetch(ownerID);
-    if (owner && owner.user) {
-        await owner.user.send(`${e}`);
-    } else {
-        console.warn("Owner not found or DMs unavailable.");
-    }
-} catch (err) {
-    console.warn("Failed to send error to owner:", err);
-}
+module.exports = {
+    name: "unmute",
+    description: "Unmute a mentioned user",
+    async execute(messageCreate) {
+        try {
+            if (!messageCreate.member.permissions.has(Discord.PermissionsBitField.Flags.ManageMessages))
+                return messageCreate.reply({ embeds: [new Discord.EmbedBuilder().setTitle("No permission").setColor("Red")] });
+
+            const member = messageCreate.mentions.members.first() || messageCreate.guild.members.cache.get(messageCreate.content.slice(prefix.length).trim().split(/ +/g)[1]);
+            if (!member) return messageCreate.reply({ embeds: [new Discord.EmbedBuilder().setTitle("No member found").setColor("Red")] });
+
+            const muterole = messageCreate.guild.roles.cache.get(MUTE_ROLE);
+            if (muterole) await member.roles.remove(muterole).catch(() => {});
+
+            const data = await punishments.findOne({ GuildID: messageCreate.guild.id, UserID: member.id });
+            if (data && data.CurrentMute) {
+                data.CurrentMute = null;
+                await data.save();
+            }
+
+            const embed = new Discord.EmbedBuilder().setTitle(`Unmuted ${member.user.username}`).setColor("Green");
+            await messageCreate.reply({ embeds: [embed] });
+
+            await member.send({ embeds: [new Discord.EmbedBuilder().setTitle(`You have been unmuted in ${messageCreate.guild.name}`).setColor("Green")] }).catch(() => {});
+
+        } catch (e) {
+            console.error(e);
         }
     }
-    }
+};

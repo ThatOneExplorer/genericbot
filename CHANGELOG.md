@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [v1.8.2] - 29/08/25
+
+### Description
+
+- Upgraded mute and unmute logic, multiple mutes on a user will no longer collide and cause user to be unmuted early
+
+## Changed
+
+./commands/mute.js, unmute.js
+
+./events/ready.js
+
+./models/ModSchema
+
 # [v1.8.1] - 12/08/25
 
 ### Description

@@ -31,7 +31,11 @@ const guild = client.guilds.cache.get(generic_server);
 await guild.channels.fetch();
 		    await membercount(client);
 			await modlogall(client);
-            await checkmutes(client);
+            await checkmutes(client)
+			setInterval(() => {
+				checkmutes(client);
+
+			}, 3000)
 			let readyembed = new Discord.EmbedBuilder()
 				.setTitle(`Bot initialised and ready!`)
 				.setColor("Green")
