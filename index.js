@@ -36,6 +36,9 @@ console.log(err)
 client.login(token)
 
 client.on("messageCreate", async messageCreate => {
+	if (!messageCreate.content.startsWith(prefix)){
+		return;
+	}
 	if(!messageCreate.guild){
 		return;
 	}

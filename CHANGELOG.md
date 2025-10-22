@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+# [v1.8.3] - 22/10/25
+
+### Description
+- Bug fix where commands were running irrespective of prefix.
+
 # [v1.8.2] - 29/08/25
 
 ### Description
