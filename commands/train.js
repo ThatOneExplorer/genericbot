@@ -35,7 +35,12 @@ module.exports = {
             return this.fetchIrishRailData(station, messageCreate);
         }
 
-        const stopFinderUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_STOPFINDER_REQUEST?ext_macro=sf&type_sf=any&name_sf=${encodeURIComponent(station)}&outputFormat=rapidJSON`;
+      let stationQuery = station;
+if (!station.toLowerCase().includes("station")) {
+    stationQuery = station + " Train Station";
+}
+const stopFinderUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_STOPFINDER_REQUEST?ext_macro=sf&type_sf=any&name_sf=${encodeURIComponent(stationQuery)}&outputFormat=rapidJSON`;
+
 
         try {
             const stopResponse = await axios.get(stopFinderUrl, {
@@ -72,10 +77,11 @@ module.exports = {
                 await messageCreate.reply("No Translink departures found. Checking Irish Rail...");
                 return this.fetchIrishRailData(station, messageCreate);
             }
+            console.log(departures)
 
             const nowTime = moment.utc();
             const railDepartures = departures
-                .filter(d => d.transportation?.name === "Rail")
+                .filter(d => d.transportation?.name?.includes("Rail"))
                 .filter(d => {
                     const planned = moment.utc(d.departureTimePlanned);
                     const estimated = d.departureTimeEstimated ? moment.utc(d.departureTimeEstimated) : null;

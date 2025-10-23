@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+# [v1.8.4] - 23/10/25
+- Edited train.js to reflect Translink API changes
+
 # [v1.8.3] - 22/10/25
 
 ### Description
