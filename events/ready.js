@@ -24,7 +24,13 @@ module.exports = {
 			let guilds = client.guilds.cache.map(guild => "Guild name" +  "    " + "     " + guild.name + "    " + "     " + `Guild id` +  "    " + "     " + guild.id)
 			console.log(guilds)
 			const discordJSVersion = packageJSON.dependencies["discord.js"];
-			client.user.setActivity(`Slava generic! My prefix is ${prefix}`)
+			 let list= [
+           "Slava Generic",
+		   "Glory to Generic",
+		   "Down with the infidels"
+        ]
+        const random = list[Math.floor (Math.random() * list.length) ]
+			client.user.setActivity(`${random}`)
 			console.log(`Connected to discord, Successfully logged as ${client.user.username}, Runtime Enviorement Version (Node)${process.version} using discord.js version: ${discordJSVersion}`)
 			await client.guilds.fetch(generic_server);
 const guild = client.guilds.cache.get(generic_server);
