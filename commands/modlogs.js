@@ -75,6 +75,7 @@ if (modloguser) {
             let moderatorusername = messageCreate.guild.members.cache.get(Punishments.Moderator) || "Unknown Moderator";
             let fieldValue = `**Reason:** ${Punishments.Reason || "No reason provided."}
             **Moderator:** ${moderatorusername}
+            **Date:** ${Punishments.Date}
             **Id:** ${Punishments.ID}`;
             
             if (charCount + fieldName.length + fieldValue.length > 5900 || fieldCount >= 25) {

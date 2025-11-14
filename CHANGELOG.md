@@ -1,7 +1,10 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-
+# [v1.9] - 14/11/25
+- Edited helpmenu.js to reflect all commands
+- Added status.js
+- Edited modlog.js to display punishment date
 # [v1.8.4] - 23/10/25
 - Edited train.js to reflect Translink API changes
 

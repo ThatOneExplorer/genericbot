@@ -32,7 +32,8 @@ try{
             .addFields(
                 {name: `8ball`, value: `Ask the 8ball a question and it will respond!`},
                 {name: `Train`, value: `Gathers real-time information of arrivals / departures at a given station on the irish rail network`},
-                {name: `Station`, value: `Provides information on a given station on the irish rail network`}
+                {name: `Station`, value: `Provides information on a given station on the irish rail network`},
+                {name: "Pet", value: "Pets a user :3"}
             )
             .setColor("Blurple")
             
@@ -46,7 +47,8 @@ try{
                     {name: `Ping`, value: `Pings Discord's API and gets a response`},
                     {name: "Constitution", value: "Creates a menu to display constitution articles"},
                     {name: "Mc", value: "Provides info on the minecraft server"}, 
-                    {name: "Help", value: "Provides dropdown menu for help"}
+                    {name: "Help", value: "Provides dropdown menu for help"},
+                    {name: "Status", value: "Changes bot's activity status"}
                     
                 )
                 .setColor("Yellow")
