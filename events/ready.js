@@ -52,6 +52,9 @@ await guild.channels.fetch();
 	const { preloadMessages } = require("../utils/aichat");
     await preloadMessages(client);
     console.log("Preloaded general chat messages.");
+	const { checkecon } = require("../utils/checkecon.js")
+	await checkecon(client);
+	console.log("Economy loaded!")
 
 			await checkmc(client)
           setInterval(() => {

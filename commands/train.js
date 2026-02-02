@@ -44,7 +44,7 @@ const stopFinderUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_STO
 
         try {
             const stopResponse = await axios.get(stopFinderUrl, {
-                timeout: 10000,
+                timeout: 1000,
                 headers: getTranslinkHeaders()
             });
 
@@ -68,7 +68,7 @@ const stopFinderUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_STO
             const departureUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_DM_REQUEST?ext_macro=dm&type_dm=any&name_dm=${stationID}&itdDate=${date}&itdTime=${time}&lsShowTrainsExplicit=1&useRealtime=1`;
 
             const departureResponse = await axios.get(departureUrl, {
-                timeout: 10000,
+                timeout: 1000,
                 headers: getTranslinkHeaders()
             });
 
@@ -137,7 +137,7 @@ const stopFinderUrl = `https://opendata.translinkniplanner.co.uk/Ext_API/XML_STO
 
         try {
             const response = await axios.get(url, {
-                timeout: 10000,
+                timeout: 1000,
                 headers: {
                     "User-Agent": "Mozilla/5.0",
                     "Accept": "application/xml"

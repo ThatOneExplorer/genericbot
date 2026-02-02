@@ -1,6 +1,9 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+# [v1.9.1] - 02/02/26
+- Began implementation of econ system
+- Shortened timeouts for train api's 
 # [v1.9] - 14/11/25
 - Edited helpmenu.js to reflect all commands
 - Added status.js
